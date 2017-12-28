@@ -9,10 +9,10 @@ import java.util.List;
  * @author Evgeniia Shcherbinina
  *
  */
-public class GameTreeNode {
+public class GameTreeNode implements Cloneable {
 
 	// An instance of the Board class
-	private Board myBoard;
+	private MyBoard board;
 	// A parent of this node
 	private GameTreeNode parent;
 	// A child of this node
@@ -21,16 +21,16 @@ public class GameTreeNode {
 	private GameTreeNode sibling;
 		
 	// Constructs a new GameTreeNode object given a board and a parent
-	public GameTreeNode(Board board, GameTreeNode parent) {
-		myBoard = board;
+	public GameTreeNode(MyBoard theBoard, GameTreeNode parent) {
+		board = theBoard;
 		this.parent = parent;
 		child = null;
 		sibling = null;
 	}
 	
 	// A constructor for the root node
-	public GameTreeNode(Board board) {
-		this(board, null);
+	public GameTreeNode(MyBoard theBoard) {
+		this(theBoard, null);
 	}
 	
 	// Returns a parent
@@ -49,8 +49,8 @@ public class GameTreeNode {
 	}
 	
 	// Returns a board of this node
-	public Board getBoard() {
-		return myBoard;
+	public MyBoard getBoard() {
+		return board;
 	}
 	
 	// Sets a child
@@ -65,7 +65,7 @@ public class GameTreeNode {
 	
 	// Adds a child to this node. If the node already has a child, the method adds a sibling to its child.
 	// If a child node already has a siblings, the method adds a sibling to the child's sibling and so on.
-	public GameTreeNode addChild(Board b) {
+	public GameTreeNode addChild(MyBoard b) {
 		GameTreeNode node = new GameTreeNode(b, this);
 		if (child == null) {
 			child = node;
